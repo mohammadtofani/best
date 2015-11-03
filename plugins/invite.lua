@@ -4,46 +4,48 @@
 
 do
 
-local function callback(extra, success, result)
-  vardump(success)
-  vardump(result)
-end
-
 local function run(msg, matches)
-  local user = matches[2]
-
   -- User submitted a user name
   if matches[1] == "name" then
-    user = string.gsub(user," ","_")
-  end
-  
+    user_ = matches[2]
+    user_ = string.gsub(user_," ","_")  
   -- User submitted an id
-  if matches[1] == "id" then
-    user = 'user#id'..user
+  elseif matches[1] == "id" then
+    user_ = matches[2]
+    user_ = 'user#id'..user_
   end
 
   -- The message must come from a chat group
   if msg.to.type == 'chat' then
-    local chat = 'chat#id'..msg.to.id
-    chat_add_user(chat, user, callback, false)
-    return "Add: "..user.." to "..chat
-  else 
+    chat_id_ = 'chat#id'..msg.to.id
+
+  print ("Trying to add: "..user_.." to "..chat_id_)
+  local success = chat_add_user (chat_id_, user_, ok_cb, false)
+  if not success then
+    user_ = nil
+    chat_id_ = nil
+    return "ErorEcc"
+  else
+    local added = "Added user: "..user_.." to "..chat_id_
+    user_ = nil
+    chat_id_ = nil
+    return added
+  end
+    else 
     return 'This isnt a chat group!'
   end
-
 end
 
 return {
-  description = "Invite other user to the chat group", 
+  description = "Invite other user to the chat group",
   usage = {
     "!invite name [user_name]", 
     "!invite id [user_id]" },
   patterns = {
-    "^!invite (name) (.*)$",
-    "^!invite (id) (%d+)$"
+    "^!invite (name) (.*)",
+    "^!invite (id) (%d+)"
   }, 
-  run = run,
-  moderation = true 
+  run = run 
 }
 
 end
