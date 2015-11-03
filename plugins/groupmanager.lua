@@ -5,7 +5,7 @@ do
 local function create_group(msg)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
-        return "You're not admin!"
+        return "OnlyAdminsCanCreategroup Admins: @ThisIsArman ' @AmIr_PaYdAaR!"
     end
     local group_creator = msg.from.print_name
     create_group_chat (group_creator, group_name, ok_cb, false)
@@ -301,7 +301,7 @@ end
 return {
   description = "Plugin to manage group chat.", 
   usage = {
-    "!creategroup <group_name> : Create a new group (admin only)",
+    "!creategroup <group_name> : Create a new group (armanandamir)",
     "!setabout <description> : Set group description",
     "!about : Read group description",
     "!setrules <rules> : Set group rules",
