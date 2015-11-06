@@ -12,9 +12,9 @@ local function check_member(cb_extra, success, result)
               moderators = {[tostring(member_id)] = username},
               settings = {
                   set_name = string.gsub(msg.to.print_name, '_', ' '),
-                  lock_name = 'no',
-                  lock_photo = 'no',
-                  lock_member = 'no'
+                  قفل اسم  = 'no',
+                  قفل عکس  = 'no',
+                  قفل اعضا  = 'no'
                   }
             }
           save_data(_config.moderation.data, data)
@@ -42,55 +42,55 @@ local function automodadd(msg)
           moderators ={[tostring(msg.from.id)] = username},
           settings = {
               set_name = string.gsub(msg.to.print_name, '_', ' '),
-              lock_name = 'no',
-              lock_photo = 'no',
-              lock_member = 'no'
+              قفل اسم  = 'no',
+              قفل عکس  = 'no',
+              قفل اعضا  = 'no'
               }
           }
       save_data(_config.moderation.data, data)
-      return 'Group has been added, and @'..username..' has been promoted as moderator for this group.'
+      return 'شما , and @'..username..' روبات را به گروه غیر اصلی ادد کرده اید یا بات را پاک کنید یا بلاک میشوید'
    end
 end
 
 local function modadd(msg)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
-        return "You're not admin"
+        return "شما مجوز این بخش را ندارید❌"
     end
     local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)] then
-    return 'Group is already added.'
+    return 'گروه از قبل به لیست مدیریت اضافه شده✔️'
   end
     -- create data array in moderation.json
   data[tostring(msg.to.id)] = {
       moderators ={},
       settings = {
           set_name = string.gsub(msg.to.print_name, '_', ' '),
-          lock_name = 'no',
-          lock_photo = 'no',
-          lock_member = 'no'
+          قفل اسم = 'no',
+          قفل عکس = 'no',
+          قفل اعضا = 'no'
           }
       }
   save_data(_config.moderation.data, data)
 
-  return 'Group has been added.'
+  return 'گروه به لیست مدیریت اضافه شد✔️'
 end
 
 local function modrem(msg)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
-        return "You're not admin"
+        return "شما مجوز این بخش را ندارید❌"
     end
     local data = load_data(_config.moderation.data)
     local receiver = get_receiver(msg)
   if not data[tostring(msg.to.id)] then
-    return 'Group is not added.'
+    return 'گروه به لیست مدیریت اضافه نشده❗️'
   end
 
   data[tostring(msg.to.id)] = nil
   save_data(_config.moderation.data, data)
 
-  return 'Group has been removed'
+  return 'گروه از لیست مدیریت خارج شد❌'
 end
 
 local function promote(receiver, member_username, member_id)
@@ -181,13 +181,13 @@ end
 local function modlist(msg)
     local data = load_data(_config.moderation.data)
   if not data[tostring(msg.to.id)] then
-    return 'Group is not added.'
+    return 'گروه به لیست مدیریت اضافه نشده❗️'
   end
   -- determine if table is empty
   if next(data[tostring(msg.to.id)]['moderators']) == nil then --fix way
-    return 'No moderator in this group.'
+    return 'هیچ ادمینی وجود ندارد❗️❗️'
   end
-  local message = 'List of moderators for ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
+  local message = 'لیست مدیر های ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
   for k,v in pairs(data[tostring(msg.to.id)]['moderators']) do
     message = message .. '- '..v..' [' ..k.. '] \n'
   end
@@ -202,9 +202,9 @@ local function admin_list(msg)
     save_data(_config.moderation.data, data)
   end
   if next(data['admins']) == nil then --fix way
-    return 'No admin available.'
+    return 'هیچ ادمینی وجود ندارد❗️❗️'
   end
-  local message = 'List for Bot admins:\n'
+  local message = 'لیست ادمین های بات😎:\n'
   for k,v in pairs(data['admins']) do
     message = message .. '- ' .. v ..' ['..k..'] \n'
   end
@@ -216,7 +216,7 @@ function run(msg, matches)
     return debugs(msg)
   end
   if not is_chat_msg(msg) then
-    return "Only works on group"
+    return "تنها در گروه کار میکند❗️"
   end
   local mod_cmd = matches[1]
   local receiver = get_receiver(msg)
@@ -228,17 +228,17 @@ function run(msg, matches)
   end
   if matches[1] == 'promote' and matches[2] then
     if not is_momod(msg) then
-        return "Only moderator can promote"
+        return "تنها مدیر میتواند افزایش  مقام دهد➕"
     end
   local member = string.gsub(matches[2], "@", "")
     chat_info(receiver, username_id, {mod_cmd= mod_cmd, receiver=receiver, member=member})
   end
   if matches[1] == 'demote' and matches[2] then
     if not is_momod(msg) then
-        return "Only moderator can demote"
+        return "تنها مدیر میتواند مقام را کم کند➖"
     end
     if string.gsub(matches[2], "@", "") == msg.from.username then
-        return "You can't demote yourself"
+        return "شما نمیتوانید مقام خودتان را کم کنید❗️"
     end
   local member = string.gsub(matches[2], "@", "")
     chat_info(receiver, username_id, {mod_cmd= mod_cmd, receiver=receiver, member=member})
@@ -248,21 +248,21 @@ function run(msg, matches)
   end
   if matches[1] == 'adminprom' then
     if not is_admin(msg) then
-        return "Only sudo can promote user as admin"
+        return "شما مجوز این کار را ندارید❌"
     end
   local member = string.gsub(matches[2], "@", "")
     chat_info(receiver, username_id, {mod_cmd= mod_cmd, receiver=receiver, member=member})
   end
   if matches[1] == 'admindem' then
     if not is_admin(msg) then
-        return "Only sudo can promote user as admin"
+        return "شما مجوز این کار را ندارید❌"
     end
     local member = string.gsub(matches[2], "@", "")
     chat_info(receiver, username_id, {mod_cmd= mod_cmd, receiver=receiver, member=member})
   end
   if matches[1] == 'adminlist' then
     if not is_admin(msg) then
-        return 'Admin only!'
+        return 'شما مجوز این بخش را ندارید❌!'
     end
     return admin_list(msg)
   end
@@ -275,20 +275,20 @@ function run(msg, matches)
 end
 
 return {
-  description = "Moderation plugin", 
+  description = "پلاگین مدیریت💪", 
   usage = {
       moderator = {
-          "!promote <username> : Promote user as moderator",
-          "!demote <username> : Demote user from moderator",
-          "!modlist : List of moderators",
+          "!promote <username> : افزایش مقام فرد یه ادمینی گروه✔️",
+          "!demote <username> : کم کردن مقام فرد به فردی ساده در گروه❌",
+          "!modlist : لیست مدیر های گروه📜",
           },
       admin = {
-          "!modadd : Add group to moderation list",
-          "!modrem : Remove group from moderation list",
+          "!modadd : اضافه کردن گروه به لیست مدیریت✔️",
+          "!modrem : حذف کردن گروه از لیست مدیریت❌",
           },
       sudo = {
-          "!adminprom <username> : Promote user as admin (must be done from a group)",
-          "!admindem <username> : Demote user from admin (must be done from a group)",
+          "!adminprom <username> : افزایش مقام فرد یه ادمینی بات👆",
+          "!admindem <username> : کم کردن مقام فرد از ادمینی بات به فرد ساده👇",
           },
       },
   patterns = {
