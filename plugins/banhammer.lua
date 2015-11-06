@@ -140,7 +140,7 @@ local function username_id(cb_extra, success, result)
       	    send_large_msg(receiver, 'User @'..member..' ['..member_id..'] banned')
       	    return ban_user(member_id, chat_id)
       	elseif get_cmd == 'superban user' then
-      	    send_large_msg(receiver, 'User @'..member..' ['..member_id..'] globally banned!')
+      	    send_large_msg(receiver, 'فرد @'..member..' ['..member_id..'] بن جهانی شد!')
       	    return superban_user(member_id, chat_id)
       	elseif get_cmd == 'whitelist user' then
       	    local hash = 'whitelist:user#id'..member_id
@@ -188,10 +188,10 @@ local function run(msg, matches)
       if matches[2] == 'delete' then
         local hash =  'banned:'..chat_id..':'..user_id
         redis:del(hash)
-        return 'User '..user_id..' unbanned'
+        return 'فرد '..user_id..' از بن خارج شد'
       end
     else
-      return 'This isn\'t a chat group'
+      return 'اینجا گروه نیست!'
     end
   end
 
@@ -201,7 +201,7 @@ local function run(msg, matches)
     if matches[2] == 'user' then
         if string.match(matches[3], '^%d+$') then
             superban_user(user_id, chat_id)
-            send_large_msg(receiver, 'User '..user_id..' globally banned!')
+            send_large_msg(receiver, 'فرد '..user_id..' بن جهانی شد!')
         else
             local member = string.gsub(matches[3], '@', '')
             chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=chat_id, member=member})
@@ -210,7 +210,7 @@ local function run(msg, matches)
     if matches[2] == 'delete' then
         local hash =  'superbanned:'..user_id
         redis:del(hash)
-        return 'User '..user_id..' unbanned'
+        return 'فرد  '..user_id..' از بن خارج شد'
     end
   end
 
@@ -223,7 +223,7 @@ local function run(msg, matches)
           chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=msg.to.id, member=member})
       end
     else
-      return 'This isn\'t a chat group'
+      return 'این جا گزوه نیست!'
     end
   end
 
@@ -284,26 +284,26 @@ local function run(msg, matches)
 end
 
 return {
-  description = "Plugin to manage bans, kicks and white/black lists.", 
+  description = "پلاگینی برای کنترل بن،کیک،لیست سفید/سیاه.", 
   usage = {
-      user = "!kickme : Exit from group",
+      user = "!kickme : خـارج شـدن از گـروه",
       moderator = {
-          "!whitelist <enable>/<disable> : Enable or disable whitelist mode",
-          "!whitelist user <user_id> : Allow user to use the bot when whitelist mode is enabled",
-          "!whitelist user <username> : Allow user to use the bot when whitelist mode is enabled",
-          "!whitelist chat : Allow everybody on current chat to use the bot when whitelist mode is enabled",
-          "!whitelist delete user <user_id> : Remove user from whitelist",
-          "!whitelist delete chat : Remove chat from whitelist",
-          "!ban user <user_id> : Kick user from chat and kicks it if joins chat again",
-          "!ban user <username> : Kick user from chat and kicks it if joins chat again",
-          "!ban delete <user_id> : Unban user",
-          "!kick <user_id> : Kick user from chat group by id",
-          "!kick <username> : Kick user from chat group by username",
+          "!whitelist <enable>/<disable> : روشن یا خاموش کردن لیست سفید😳",
+          "!whitelist user <user_id> : اجازه به فرد برای استفاده از بات 🔱",
+          "!whitelist user <username> : اجازه به فرد برای استفاده از بات 🔱",
+          "!whitelist chat : اجازه به استفاده از بات هنگام روشن بودن لیست سفید در این گروه📄",
+          "!whitelist delete user <user_id> : حـذفـ کـردن فـرد از لـیـسـت سـفـیـد📄",
+          "!whitelist delete chat : حـذفـ کـردن گـروهـ از لـیـسـت سـفـیـد📄",
+          "!ban user <user_id> : بـن کـردنـ فـرد بـا یـوزر ایـدیـ💢",
+          "!ban user <username> : بـن کـردنـ فـرد بـا یـوزر نـیـمـ💢",
+          "!ban delete <user_id> : (خـارج کـردنـ فـرد از بـن (تـنـهـا بـا یـوزر ایـدیـ  〽️",
+          "!kick <user_id> : کـیـک کـردنـ فـرد تـوسـطـ یـوزر ایـدیــ✋",
+          "!kick <username> : کـیـک کـردنـ فـرد تـوسـطـ یـوزر نـیـم✋",
           },
       admin = {
-          "!superban user <user_id> : Kick user from all chat and kicks it if joins again",
-          "!superban user <username> : Kick user from all chat and kicks it if joins again",
-          "!superban delete <user_id> : Unban user",
+          "!superban user <user_id> : بـن جـهـانی  فـرد توسط یـوزر ایـدیـ⛔️",
+          "!superban user <username> : بـن جـهـانی  فـرد توسط یـوزر نـیم⛔️",
+          "!superban delete <user_id> : خـارج کـردنـ فـرد از بـن جـهـانـیـ🔊",
           },
       },
   patterns = {
