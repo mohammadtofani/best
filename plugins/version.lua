@@ -4,7 +4,7 @@ function run(msg, matches)
   return 'Telegram Bot '.. VERSION .. [[ 
   Checkout http://git.io/v8qW7
   GNU GPL v2 license.
-  @ThisIsArman for more info.]]
+  @ThisIsArman برای اطلاعات بیشتر به یوزر سازنده مراجعه کنید]]
 end
 
 return {
