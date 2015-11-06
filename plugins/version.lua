@@ -2,14 +2,14 @@ do
 
 function run(msg, matches)
   return 'Telegram Bot '.. VERSION .. [[ 
-  Checkout http://git.io/vO30o
+  Checkout http://git.io/v8qW7
   GNU GPL v2 license.
-  @silenceangel for more info.]]
+  @ThisIsArman for more info.]]
 end
 
 return {
-  description = "Shows bot version", 
-  usage = "!version: Shows bot version",
+  description = "نـمایــش سـورسـ بـات", 
+  usage = "!version: نـمایــش سـورسـ بـات"",
   patterns = {
     "^!version$"
   }, 
