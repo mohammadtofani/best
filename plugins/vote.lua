@@ -73,9 +73,9 @@ end
 return {
   description = "Plugin for voting in groups.", 
   usage = {
-    "!voting reset: Reset all the votes.",
-    "!vote [number]: Cast the vote.",
-    "!voting stats: Shows the statistics of voting."
+    "!voting reset: ریست و راه اندازی مجدد رای ها🔄.",
+    "!vote [number]: شمارش رای ها1⃣",
+    "!voting stats: نمایش امار رای گیری1⃣2⃣3⃣"
   },
   patterns = {
     "^!vot(ing) (reset)",
