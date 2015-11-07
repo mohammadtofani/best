@@ -18,7 +18,7 @@ local function returnids(cb_extra, success, result)
    local chat_id = result.id
    local chatname = result.print_name
 
-   local text = 'IDs for chat '..chatname
+   local text = 'ایدی های گروه  '..chatname
       ..' ('..chat_id..')\n'
       ..'There are '..result.members_num..' members'
       ..'\n---------\n'
@@ -33,11 +33,11 @@ end
 local function username_id(cb_extra, success, result)
    local receiver = cb_extra.receiver
    local qusername = cb_extra.qusername
-   local text = 'User '..qusername..' not found in this group!'
+   local text = 'User '..qusername..' در این گروه یافت نشد❗️ '
    for k,v in pairs(result.members) do
       vusername = v.username
       if vusername == qusername then
-      	text = 'ID for username\n'..vusername..' : '..v.id
+      	text = 'ایدی برای یوزر نیم n'..vusername..' : '..v.id
       end
    end
    send_large_msg(receiver, text)
@@ -48,7 +48,7 @@ local function run(msg, matches)
    if matches[1] == "!id" then
       local text = 'Name : '.. string.gsub(user_print_name(msg.from),'_', ' ') .. '\nID : ' .. msg.from.id
       if is_chat_msg(msg) then
-         text = text .. "\n\nYou are in group " .. string.gsub(user_print_name(msg.to), '_', ' ') .. " (ID: " .. msg.to.id  .. ")"
+         text = text .. "\n\n شما در گروه  " .. string.gsub(user_print_name(msg.to), '_', ' ') .. " (ID: " .. msg.to.id  .. ")"
       end
       return text
    elseif matches[1] == "chat" then
@@ -58,14 +58,14 @@ local function run(msg, matches)
          chat_info(chat, returnids, {receiver=receiver})
       else
          if not is_chat_msg(msg) then
-            return "You are not in a group."
+            return "شما در این گروه نیستید❗️"
          end
          local chat = get_receiver(msg)
          chat_info(chat, returnids, {receiver=receiver})
       end
    else
    	if not is_chat_msg(msg) then
-   		return "Only works in group"
+   		return " تنها در گروه💢 "
    	end
    	local qusername = string.gsub(matches[1], "@", "")
    	local chat = get_receiver(msg)
@@ -74,12 +74,12 @@ local function run(msg, matches)
 end
 
 return {
-   description = "Know your id or the id of a chat members.",
+   description = " نمایش ایدی شما و یا گروه  ",
    usage = {
-      "!id: Return your ID and the chat id if you are in one.",
-      "!ids chat: Return the IDs of the current chat members.",
-      "!ids chat <chat_id>: Return the IDs of the <chat_id> members.",
-      "!id <username> : Return the id from username given."
+      "!id:  نمایش ایدی شما ",
+      "!ids chat: نمایش ایدی افراد چت ",
+      "!ids chat <chat_id>: نمایش ایدی افراد چت شماره چت ",
+      "!id <username> : نمایش ایدی یوزر مقابل "
    },
    patterns = {
       "^!id$",
