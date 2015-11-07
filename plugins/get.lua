@@ -41,8 +41,8 @@ local function run(msg, matches)
 end
 
 return {
-  description = "Retrieves variables saved with !set", 
-  usage = "!get (value_name): Returns the value_name value.",
+  description = " دریافت فایل با !set", 
+  usage = "!get (value_name):  نمایش فایل ",
   patterns = {
     "^(!get) (.+)$",
     "^!get$"
