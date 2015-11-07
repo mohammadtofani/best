@@ -195,17 +195,17 @@ local function run(msg, matches)
 end
 
 return {
-  description = "Plugin to manage other plugins. Enable, disable or reload.", 
+  description = "پلاگینی برای کنترل دیگر پلاگین ها😁 ", 
   usage = {
       moderator = {
-          "!plugins disable [plugin] chat : disable plugin only this chat.",
-          "!plugins enable [plugin] chat : enable plugin only this chat.",
+          "!plugins disable [plugin] chat : قطع کردن پلاگین یک چت2⃣ ",
+          "!plugins enable [plugin] chat : وصل کردن پلاگین یک چت1⃣ ",
           },
       sudo = {
-          "!plugins : list all plugins.",
-          "!plugins enable [plugin] : enable plugin.",
-          "!plugins disable [plugin] : disable plugin.",
-          "!plugins reload : reloads all plugins." },
+          "!plugins : نمایش دادن تمامی پلاگین های نصب شده💢 ",
+          "!plugins enable [plugin] : وصل کردن یک پلاگین〰〰 ",
+          "!plugins disable [plugin] : قطع کردن یک پلاگین❌ ",
+          "!plugins reload : ریلود کردن تمامی پلاگین ها➖ " },
           },
   patterns = {
     "^!plugins$",
