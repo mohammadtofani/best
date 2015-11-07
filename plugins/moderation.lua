@@ -12,9 +12,9 @@ local function check_member(cb_extra, success, result)
               moderators = {[tostring(member_id)] = username},
               settings = {
                   set_name = string.gsub(msg.to.print_name, '_', ' '),
-                  قفل اسم  = 'no',
-                  قفل عکس  = 'no',
-                  قفل اعضا  = 'no'
+                  lock_name = 'no',
+                  lock_photo = 'no',
+                  lock_member = 'no'
                   }
             }
           save_data(_config.moderation.data, data)
