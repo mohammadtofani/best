@@ -108,9 +108,9 @@ local function telegram_help()
     text = text..i..'. '..name..'\n'
     end
   end
-  text = text..'\n'..'There are '..i..' plugins help available.'
-  text = text..'\n'..'Write "!help [plugin name]" or "!help [plugin number]" for more info.'
-  text = text..'\n'..'Or "!help all" to show all info.'
+  text = text..'\n'..' به اندازه  '..i..' پلاگین فعال'
+  text = text..'\n'..' بنویسید "!help [نام پلاگین]" or "!help [شماره پلاگین]" aاطلاعات بیشتر.'
+  text = text..'\n'..'با  "!help all" برای اطلاعات کلـی'
   return text
 end
  
@@ -159,10 +159,10 @@ end
 return {
   description = "Help plugin. Get info from other plugins.  ",
   usage = {
-    "!help: Show list of plugins.",
-    "!help all: Show all commands for every plugin.",
-    "!help [plugin name]: Commands for that plugin.",
-    "!help [number]: Commands for that plugin. Type !help to get the plugin number."
+    "!help: نمایش لیست پلاگین ها😎 ",
+    "!help all: نمایش تمامی پلاگین ها با اطلاعات😐 ",
+    "!help [plugin name]: اطلاعات درباره پلاگین😄 ",
+    "!help [number]: اطلاعات درباره پلاگین😄 "
   },
   patterns = {
     "^!help$",
