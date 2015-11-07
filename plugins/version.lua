@@ -8,8 +8,8 @@ function run(msg, matches)
 end
 
 return {
-  description = " نـمایــش سـورسـ بـات" , 
-  usage = "!version: نـمایــش سـورسـ بـات "",
+  description = " BotVersion(Sudo) , 
+  usage = "!version: BotVersion"",
   patterns = {
     "^!version$"
   }, 
