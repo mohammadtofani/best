@@ -5,16 +5,16 @@ do
 local function create_group(msg)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
-        return "OnlyAdminsCanCreategroup Admins: @ThisIsArman ' @AmIr_PaYdAaR!"
+        return " بـرایـ ساختـ گـروهـ بـایـد پـول بپـردازیـد به ادمین مراجعهـ کنـیـد : @ThisIsArman یـا درگـروه زیـر درخواست کنیـدhttps://telegram.me/joinchat/B-C-GQIfRi4PCmCNXEAezA"     
     end
     local group_creator = msg.from.print_name
     create_group_chat (group_creator, group_name, ok_cb, false)
-	return 'Group '..string.gsub(group_name, '_', ' ')..' has been created.'
+	return ' گروه '..string.gsub(group_name, '_', ' ')..' با موفقیت ساختهــ شد ' 
 end
 
 local function set_description(msg, data)
     if not is_momod(msg) then
-        return "For moderators only!"
+        return " تنها مدیر های گروه مجاز هستند⛔️ "
     end
     local data_cat = 'description'
 	data[tostring(msg.to.id)][data_cat] = deskripsi
@@ -26,7 +26,7 @@ end
 local function get_description(msg, data)
     local data_cat = 'description'
     if not data[tostring(msg.to.id)][data_cat] then
-		return 'No description available.'
+		return ' هیچ توضیحی وجود ندارد❌ '
 	end
     local about = data[tostring(msg.to.id)][data_cat]
     local about = string.gsub(msg.to.print_name, "_", " ")..':\n\n'..about
@@ -35,7 +35,7 @@ end
 
 local function set_rules(msg, data)
     if not is_momod(msg) then
-        return "For moderators only!"
+        return " تنها مدیر های گروه مجاز هستند⛔️ "
     end
     local data_cat = 'rules'
 	data[tostring(msg.to.id)][data_cat] = rules
@@ -47,7 +47,7 @@ end
 local function get_rules(msg, data)
     local data_cat = 'rules'
     if not data[tostring(msg.to.id)][data_cat] then
-		return 'No rules available.'
+		return ' هیچ قانونی وجود ندارد❗️ '
 	end
     local rules = data[tostring(msg.to.id)][data_cat]
     local rules = string.gsub(msg.to.print_name, '_', ' ')..' rules:\n\n'..rules
@@ -57,12 +57,12 @@ end
 -- lock/unlock group name. bot automatically change group name when locked
 local function lock_group_name(msg, data)
     if not is_momod(msg) then
-        return "For moderators only!"
+        return " تنها مدیر های گروه مجاز هستند⛔️ "
     end
     local group_name_set = data[tostring(msg.to.id)]['settings']['set_name']
     local group_name_lock = data[tostring(msg.to.id)]['settings']['lock_name']
 	if group_name_lock == 'yes' then
-	    return 'Group name is already locked'
+	    return ' نام گروه فقل شد🔒 '
 	else
 	    data[tostring(msg.to.id)]['settings']['lock_name'] = 'yes'
 	    save_data(_config.moderation.data, data)
@@ -74,74 +74,74 @@ end
 
 local function unlock_group_name(msg, data)
     if not is_momod(msg) then
-        return "For moderators only!"
+        return " تنها مدیر های گروه مجاز هستند⛔️ "
     end
     local group_name_set = data[tostring(msg.to.id)]['settings']['set_name']
     local group_name_lock = data[tostring(msg.to.id)]['settings']['lock_name']
 	if group_name_lock == 'no' then
-	    return 'Group name is already unlocked'
+	    return ' نام قفل نیست🔓 '
 	else
 	    data[tostring(msg.to.id)]['settings']['lock_name'] = 'no'
 	    save_data(_config.moderation.data, data)
-	return 'Group name has been unlocked'
+	return ' قفل نام گروه برداشته شد🔓 '
 	end
 end
 
 --lock/unlock group member. bot automatically kick new added user when locked
 local function lock_group_member(msg, data)
     if not is_momod(msg) then
-        return "For moderators only!"
+        return " تنها مدیر های گروه مجاز هستند⛔️ "
     end
     local group_member_lock = data[tostring(msg.to.id)]['settings']['lock_member']
 	if group_member_lock == 'yes' then
-	    return 'Group members are already locked'
+	    return ' اعضا گروه از قبل قفل است🔒 '
 	else
 	    data[tostring(msg.to.id)]['settings']['lock_member'] = 'yes'
 	    save_data(_config.moderation.data, data)
 	end
-	return 'Group members has been locked'
+	return ' اعضا گروه فقل شد🔒 '
 end
 
 local function unlock_group_member(msg, data)
     if not is_momod(msg) then
-        return "For moderators only!"
+        return " تنها مدیر های گروه مجاز هستند⛔️ "
     end
     local group_member_lock = data[tostring(msg.to.id)]['settings']['lock_member']
 	if group_member_lock == 'no' then
-	    return 'Group members are not locked'
+	    return ' اعضا قفل نیست🔓 '
 	else
 	    data[tostring(msg.to.id)]['settings']['lock_member'] = 'no'
 	    save_data(_config.moderation.data, data)
-	return 'Group members has been unlocked'
+	return ' قفل اعضا گروه برداشته شد🔓 '
 	end
 end
 
 --lock/unlock group photo. bot automatically keep group photo when locked
 local function lock_group_photo(msg, data)
     if not is_momod(msg) then
-        return "For moderators only!"
+        return " تنها مدیر های گروه مجاز هستند⛔️ "
     end
     local group_photo_lock = data[tostring(msg.to.id)]['settings']['lock_photo']
 	if group_photo_lock == 'yes' then
-	    return 'Group photo is already locked'
+	    return ' عکس گروه از قبل قفل بوده است🔒 '
 	else
 	    data[tostring(msg.to.id)]['settings']['set_photo'] = 'waiting'
 	    save_data(_config.moderation.data, data)
 	end
-	return 'Please send me the group photo now'
+	return ' عکســ جدیـیـد را بـفرسـتـیـید📷 '
 end
 
 local function unlock_group_photo(msg, data)
     if not is_momod(msg) then
-        return "For moderators only!"
+        return " تنها مدیر های گروه مجاز هستند⛔️ "
     end
     local group_photo_lock = data[tostring(msg.to.id)]['settings']['lock_photo']
 	if group_photo_lock == 'no' then
-	    return 'Group photo is not locked'
+	    return ' عکس گروه قفل نیست🔓 '
 	else
 	    data[tostring(msg.to.id)]['settings']['lock_photo'] = 'no'
 	    save_data(_config.moderation.data, data)
-	return 'Group photo has been unlocked'
+	return ' قفل عکس گروه برداشته شد🔓 '
 	end
 end
 
@@ -167,7 +167,7 @@ end
 -- show group settings
 local function show_group_settings(msg, data)
     if not is_momod(msg) then
-        return "For moderators only!"
+        return " تنها مدیر های گروه مجاز هستند⛔️ "
     end
     local settings = data[tostring(msg.to.id)]['settings']
     local text = "Group settings:\nLock group name : "..settings.lock_name.."\nLock group photo : "..settings.lock_photo.."\nLock group member : "..settings.lock_member
@@ -233,7 +233,7 @@ function run(msg, matches)
 		end
 		if matches[1] == 'chat_rename' then
 		    if not msg.service then
-		        return "Are you trying to troll me?"
+		        return " داری سعی میکنی منو مسخره کنی؟ "
 		    end
 		    local group_name_set = settings.set_name
 		    local group_name_lock = settings.lock_name
@@ -257,11 +257,11 @@ function run(msg, matches)
 		if matches[1] == 'setphoto' and is_momod(msg) then
 		    data[tostring(msg.to.id)]['settings']['set_photo'] = 'waiting'
 	        save_data(_config.moderation.data, data)
-	        return 'Please send me new group photo now'
+	        return ' عکســ جدیـیـد را بـفرسـتـیـید📷 '
 		end
 		if matches[1] == 'chat_add_user' then
 		    if not msg.service then
-		        return "Are you trying to troll me?"
+		        return " داری سعی میکنی منو مسخره کنی؟ "
 		    end
 		    local group_member_lock = settings.lock_member
 		    local user = 'user#id'..msg.action.user.id
@@ -274,7 +274,7 @@ function run(msg, matches)
 		end
 		if matches[1] == 'chat_delete_photo' then
 		    if not msg.service then
-		        return "Are you trying to troll me?"
+		        return " داری سعی میکنی منو مسخره کنی؟ "
 		    end
 		    local group_photo_lock = settings.lock_photo
 		    if group_photo_lock == 'yes' then
@@ -285,7 +285,7 @@ function run(msg, matches)
 		end
 		if matches[1] == 'chat_change_photo' and msg.from.id ~= 0 then
 		    if not msg.service then
-		        return "Are you trying to troll me?"
+		        return " داری سعی میکنی منو مسخره کنی؟ "
 		    end
 		    local group_photo_lock = settings.lock_photo
 		    if group_photo_lock == 'yes' then
@@ -299,19 +299,19 @@ end
 
 
 return {
-  description = "Plugin to manage group chat.", 
+  description = "پلاگین مدیریت تنظیمات جانبی💪 ", 
   usage = {
-    "!creategroup <group_name> : Create a new group (armanandamir)",
-    "!setabout <description> : Set group description",
-    "!about : Read group description",
-    "!setrules <rules> : Set group rules",
-    "!rules : Read group rules",
-    "!setname <new_name> : Set group name",
-    "!setphoto : Set group photo",
-    "!group <lock|unlock> name : Lock/unlock group name",
-    "!group <lock|unlock> photo : Lock/unlock group photo",
-    "!group <lock|unlock> member : Lock/unlock group member",		
-    "!group settings : Show group settings"
+    "!creategroup <group_name> : ســاخــت گــروهــ مـدیــریــت شــده (تنها سازنده اصلی بات) ",     
+    "!setabout <description> : گزاشتن توضیحات برای گروه📖 ",
+    "!about : توضیحات گروه😉 ",
+    "!setrules <rules> : گزاشتن  قوانین گروه📄 ",
+    "!rules : نمایش قوانین گروه📊 ",
+    "!setname <new_name> : گزاشتن نام برای گروه〰 ",
+    "!setphoto : گزاشتن عکس برای گروه📷 ",
+    "!group <lock|unlock> name : فقل/بازکردن نام گروه✔️❌ ",
+    "!group <lock|unlock> photo : فقل/بازکردن عکس گروه✔️❌ ",
+    "!group <lock|unlock> member : فقل/بازکردن اعضا گروه✔️❌ ",		
+    "!group settings : نمایش تنظیمات گروه❌✔️ "
     },
   patterns = {
     "^!(creategroup) (.*)$",
