@@ -68,7 +68,7 @@ local function lock_group_name(msg, data)
 	    save_data(_config.moderation.data, data)
 	    data[tostring(msg.to.id)]['settings']['set_name'] = string.gsub(msg.to.print_name, '_', ' ')
 	    save_data(_config.moderation.data, data)
-	return 'Group name has been locked'
+	return ' نام گروه فقل شد🔒 '
 	end
 end
 
@@ -128,7 +128,7 @@ local function lock_group_photo(msg, data)
 	    data[tostring(msg.to.id)]['settings']['set_photo'] = 'waiting'
 	    save_data(_config.moderation.data, data)
 	end
-	return ' عکســ جدیـیـد را بـفرسـتـیـید📷 '
+	return ' عکســ جدیـیـد را بـفرسـتــید📷  '
 end
 
 local function unlock_group_photo(msg, data)
@@ -181,7 +181,7 @@ function run(msg, matches)
         return create_group(msg)
     end
     if not is_chat_msg(msg) then
-	    return "This is not a group chat."
+	    return "تنها در گروه کار میکند❗️"
 	end
     local data = load_data(_config.moderation.data)
     local receiver = get_receiver(msg)
