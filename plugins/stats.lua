@@ -1,6 +1,6 @@
 do
 
-local NUM_MSG_MAX = 5
+local NUM_MSG_MAX = 6
 local TIME_CHECK = 4 -- seconds
 
 
@@ -30,7 +30,7 @@ local uhash = 'user:'..user_id
 local user = redis:hgetall(uhash)
 local um_hash = 'msgs:'..user_id..':'..chat_id
 user_info.msgs = tonumber(redis:get(um_hash) or 0)
-user_info.name = user_print_name(user)..' ('..user_id..')'
+user_info.name = user_print_name(user)..'👤|'..user_id..'|🗣'
 return user_info
 end
 
@@ -56,7 +56,7 @@ end)
 
 local text = ''
 for k,user in pairs(users_info) do
-text = text..user.name..' => '..user.msgs..'\n'
+text = text..user.name..'\n-----------'
 end
 
 return text
@@ -153,13 +153,13 @@ if msg.to.type == 'chat' then
 local chat_id = msg.to.id
 return chat_stats(chat_id)
 else
-return 'Stats works only on chats'
+return ' تنها در گروه کار میکند❗️ '
 end
 end
 
 if matches[2] == "bot" then
 if not is_sudo(msg) then
-return "Bot stats requires privileged user"
+return " شما مجوز این بخش را ندارید❌ "
 else
 return bot_stats()
 end
@@ -167,7 +167,7 @@ end
 
 if matches[2] == "chat" then
 if not is_sudo(msg) then
-return "This command requires privileged user"
+return " شما مجوز این بخش را ندارید❌ "
 else
 return chat_stats(matches[3])
 end
@@ -178,9 +178,9 @@ end
 return {
 description = "Plugin to update user stats.",
 usage = {
-"!stats: Returns a list of Username [telegram_id]: msg_num",
-"!stats chat <chat_id>: Show stats for chat_id",
-"!stats bot: Shows bot stats (sudo users)"
+"!stats: نمایش بیشترین تعداد چت ",
+"!stats chat <chat_id>: نمایش امار گروه ",
+"!stats bot: نمایش امار بات تنها ادمین ها "
 },
 patterns = {
 "^!([Ss]tats)$",
