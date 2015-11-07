@@ -42,9 +42,9 @@ local function automodadd(msg)
           moderators ={[tostring(msg.from.id)] = username},
           settings = {
               set_name = string.gsub(msg.to.print_name, '_', ' '),
-              قفل اسم  = 'no',
-              قفل عکس  = 'no',
-              قفل اعضا  = 'no'
+                  lock_name = 'no',
+                  lock_photo = 'no',
+                  lock_member = 'no'
               }
           }
       save_data(_config.moderation.data, data)
@@ -66,9 +66,9 @@ local function modadd(msg)
       moderators ={},
       settings = {
           set_name = string.gsub(msg.to.print_name, '_', ' '),
-          قفل اسم = 'no',
-          قفل عکس = 'no',
-          قفل اعضا = 'no'
+                  lock_name = 'no',
+                  lock_photo = 'no',
+                  lock_member = 'no'
           }
       }
   save_data(_config.moderation.data, data)
@@ -181,11 +181,11 @@ end
 local function modlist(msg)
     local data = load_data(_config.moderation.data)
   if not data[tostring(msg.to.id)] then
-    return 'گروه به لیست مدیریت اضافه نشده❗️'
+    return ' گروه به لیست مدیریت اضافه نشده❗️ '
   end
   -- determine if table is empty
   if next(data[tostring(msg.to.id)]['moderators']) == nil then --fix way
-    return 'هیچ ادمینی وجود ندارد❗️❗️'
+    return ' هیچ ادمینی وجود ندارد❗️❗ ️'
   end
   local message = 'لیست مدیر های ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
   for k,v in pairs(data[tostring(msg.to.id)]['moderators']) do
@@ -202,9 +202,9 @@ local function admin_list(msg)
     save_data(_config.moderation.data, data)
   end
   if next(data['admins']) == nil then --fix way
-    return 'هیچ ادمینی وجود ندارد❗️❗️'
+    return ' هیچ ادمینی وجود ندارد❗️❗ ️'
   end
-  local message = 'لیست ادمین های بات😎:\n'
+  local message = ' لیست ادمین های بات :\n'
   for k,v in pairs(data['admins']) do
     message = message .. '- ' .. v ..' ['..k..'] \n'
   end
@@ -216,7 +216,7 @@ function run(msg, matches)
     return debugs(msg)
   end
   if not is_chat_msg(msg) then
-    return "تنها در گروه کار میکند❗️"
+    return " تنها در گروه کار میکند❗ ️"
   end
   local mod_cmd = matches[1]
   local receiver = get_receiver(msg)
@@ -228,17 +228,17 @@ function run(msg, matches)
   end
   if matches[1] == 'promote' and matches[2] then
     if not is_momod(msg) then
-        return "تنها مدیر میتواند افزایش  مقام دهد➕"
+        return " تنها مدیر میتواند افزایش  مقام دهد➕ "    
     end
   local member = string.gsub(matches[2], "@", "")
     chat_info(receiver, username_id, {mod_cmd= mod_cmd, receiver=receiver, member=member})
   end
   if matches[1] == 'demote' and matches[2] then
     if not is_momod(msg) then
-        return "تنها مدیر میتواند مقام را کم کند➖"
+        return " تنها مدیر میتواند مقام را کم کند➖ "
     end
     if string.gsub(matches[2], "@", "") == msg.from.username then
-        return "شما نمیتوانید مقام خودتان را کم کنید❗️"
+        return " شما نمیتوانید مقام خودتان را کم کنید❗️ "
     end
   local member = string.gsub(matches[2], "@", "")
     chat_info(receiver, username_id, {mod_cmd= mod_cmd, receiver=receiver, member=member})
@@ -248,21 +248,21 @@ function run(msg, matches)
   end
   if matches[1] == 'adminprom' then
     if not is_admin(msg) then
-        return "شما مجوز این کار را ندارید❌"
+        return " شما مجوز این کار را ندارید❌ "
     end
   local member = string.gsub(matches[2], "@", "")
     chat_info(receiver, username_id, {mod_cmd= mod_cmd, receiver=receiver, member=member})
   end
   if matches[1] == 'admindem' then
     if not is_admin(msg) then
-        return "شما مجوز این کار را ندارید❌"
+        return " شما مجوز این کار را ندارید❌ "  
     end
     local member = string.gsub(matches[2], "@", "")
     chat_info(receiver, username_id, {mod_cmd= mod_cmd, receiver=receiver, member=member})
   end
   if matches[1] == 'adminlist' then
     if not is_admin(msg) then
-        return 'شما مجوز این بخش را ندارید❌!'
+        return ' شما مجوز این بخش را ندارید❌! ' 
     end
     return admin_list(msg)
   end
@@ -275,20 +275,20 @@ function run(msg, matches)
 end
 
 return {
-  description = "پلاگین مدیریت💪", 
+  description = " پلاگین مدیریت💪 ", 
   usage = {
       moderator = {
-          "!promote <username> : افزایش مقام فرد یه ادمینی گروه✔️",
-          "!demote <username> : کم کردن مقام فرد به فردی ساده در گروه❌",
-          "!modlist : لیست مدیر های گروه📜",
+          "!promote <username> : افزایش مقام فرد یه ادمینی گروه✔️ ",
+          "!demote <username> : کم کردن مقام فرد به فردی ساده در گروه❌ ",
+          "!modlist : لیست مدیر های گروه📜 ",
           },
       admin = {
-          "!modadd : اضافه کردن گروه به لیست مدیریت✔️",
-          "!modrem : حذف کردن گروه از لیست مدیریت❌",
+          "!modadd : اضافه کردن گروه به لیست مدیریت✔ ️",
+          "!modrem : حذف کردن گروه از لیست مدیریت❌ ",
           },
       sudo = {
-          "!adminprom <username> : افزایش مقام فرد یه ادمینی بات👆",
-          "!admindem <username> : کم کردن مقام فرد از ادمینی بات به فرد ساده👇",
+          "!adminprom <username> : افزایش مقام فرد یه ادمینی بات👆 ",
+          "!admindem <username> : کم کردن مقام فرد از ادمینی بات به فرد ساده👇 ",
           },
       },
   patterns = {
