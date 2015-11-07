@@ -213,6 +213,7 @@ function create_config( )
       "groupmanager",
       "help",
       "id",
+      "face",
       "images",
       "img_google",
       "location",
