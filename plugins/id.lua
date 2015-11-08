@@ -83,13 +83,9 @@ return {
    },
    patterns = {
       "^!id$",
-      "^/id$",
       "^!ids? (chat) (%d+)$",
-      "^/ids? (chat) (%d+)$",
       "^!ids? (chat)$",
-      "^/ids? (chat)$",
       "^!id (.*)$"
-      "^/id (.*)$"
    },
    run = run
 }
