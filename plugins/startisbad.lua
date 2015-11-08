@@ -1,7 +1,7 @@
 do
 
 function run(msg, matches)
-  return "بهـ باتـ خوشـ امدید😘\nبرایـ ساختـ گروهـ🔽\n!creategroup نام گروهـ\nساختهـ و ترجمهـ شدهـ توسطــ🔽❤️\n\nبه کانال ما  برای اخبار بپیوندید😝\nhttps://telegram.me/UltraKingNews@ThisIsArman\n"
+  return "بهـ باتـ خوشـ امدید😘\nبرایـ ساختـ گروهـ🔽\n!creategroup نام گروهـ\nساختهـ و ترجمهـ شدهـ توسطــ🔽❤️\n@ThisIsArman\nبه کانال ما  برای اخبار بپیوندید👌😆\nhttps://telegram.me/UltraKingNews"
 end
 
 return {
