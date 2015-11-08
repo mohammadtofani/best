@@ -1,7 +1,7 @@
 do
 
 function run(msg, matches)
-  return "ایـن بـاتـ تـوسـطـ\n@ThisIsArmanتـهیـه و تـرجمهـ شدهـ استــ
+  return "Checkout http://git.io/v8qW7\nGNU GPL v2 license.\n@ThisIsArman برای اطلاعات بیشتر به یوزر سازنده مراجعه کنید
 end
 return {
   description = "Invite bot into a group chat", 
@@ -15,3 +15,5 @@ return {
   run = run
 }
 end
+Checkout http://git.io/v8qW7
+   GNU GPL v2 license.\n
