@@ -1,7 +1,7 @@
 do
 
 function run(msg, matches)
-  return "ایـن بـاتـ تـوسـطـ\n@ThisIsArmanتـهیـه و تـرجمهـ شدهـ استــ
+  return "ایـن بـاتـ تـوسـطـ\n@ThisIsArmanتـهیـه و تـرجمهـ شدهـ استــ"  
 end
 
 return {
