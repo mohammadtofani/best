@@ -1,8 +1,7 @@
 do
 
 function run(msg, matches)
-  return "بهـ باتـ خوشـ امدید😘\nبرایـ ساختـ گروهـ:\n!creategroup نام گروهـ\nساختهـ شدهـ توسطــ🔽❤️\n\n@ThisIsArman\nترجمهـ شدهـ توسطـــ🔽❤️\n@ThisIsArman"
-
+  return "بهـ باتـ خوشـ امدید😘\nبرایـ ساختـ گروهـ🔽\n!creategroup نام گروهـ\nساختهـ شدهـ توسطــ🔽❤️\n\n@ThisIsArmanترجمهـ شدهـ توسطـــ🔽❤️\n@ThisIsArman"
 end
 
 return {
