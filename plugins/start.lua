@@ -1,25 +1,22 @@
 do
 
-
 function run(msg, matches)
-  return " به بات خوش آمدید!/n\برای ساخت گروه🔽/n\بـه لیــنک زیـر وارد شویــد/n\https://telegram.me/joinchat/B-C-GQIfRi4PCmCNXEAezA/n\برای دریافت دستورات گروه🔽/n\!gphelp/n\ســاختهـ شدهـ توسطــ/n\ThisIsArman@ "
+  return "بهـ باتـ خوشـ امدید😘\nبرایـ ساختـ گروهـ🔽\n!creategroup نام گروهـ\nساختهـ و ترجمهـ شدهـ توسطــ🔽❤️\n@ThisIsArman\nبه کانال ما  برای اخبار بپیوندید👌😆\nhttps://telegram.me/UltraKingNews"
 end
 
-
 return {
-  description = "شروعی بات", 
-  usage = " !help ",
+  description = "Invite bot into a group chat", 
+  usage = "!join [invite link]",
   patterns = {
     "^/start$",
+    "^!Start$",
     "^/Start$",
-    "^start$",
-    "^Start$",
+    "^!start$",
    "^!help$",
   "^/help$",
   "^!Help$",
   },
   run = run
 }
-
 
 end
