@@ -46,6 +46,9 @@ return {
   patterns = {
     "^(!get) (.+)$",
     "^!get$"
+       "^(/get) (.+)$",
+    "^/get$"
+
   },
   run = run
 }
