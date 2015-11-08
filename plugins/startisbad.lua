@@ -9,9 +9,9 @@ return {
   usage = "!join [invite link]",
   patterns = {
     "^/start$",
+    "^!Start$",
     "^/Start$",
-    "^start$",
-    "^Start$",
+    "^!start$",
    "^!help$",
   "^/help$",
   "^!Help$",
