@@ -15,5 +15,3 @@ return {
   run = run
 }
 end
-Checkout http://git.io/v8qW7
-   GNU GPL v2 license.\n
