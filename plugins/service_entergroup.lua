@@ -94,8 +94,8 @@ local function run(msg, matches)
 end
 
 return {
-   description = "Service plugin that sends a custom message when an user enters a chat.",
-   usage = "Welcoming new member.",
+   description = " خوش امد گویی",
+   usage = " خوش امد گویی ",
    patterns = {
       "^!!tgservice (chat_add_user)$",
       "^!!tgservice (chat_add_user_link)$",
