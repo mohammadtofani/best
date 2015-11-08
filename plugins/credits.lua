@@ -11,7 +11,7 @@ return {
     "^/credits$",
     "^!credits$",
     "^/Credits$",
-    "^!Credis$",
+    "^!Credits$",
   },
   run = run
 }
