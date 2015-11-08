@@ -29,8 +29,6 @@ return {
   usage = "!set [value_name] [data]: ذخیره کردن دیتا ",
   patterns = {
    "!set ([^%s]+) (.+)$"
-      "/set ([^%s]+) (.+)$"
-
   }, 
   run = run 
 }
