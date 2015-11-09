@@ -17,7 +17,7 @@ local fuses = '!printf user#id' .. msg.from.id
  else
 
 
- local sends0 = send_msg('chat#id50220328', fuse, ok_cb, false)
+ local sends = send_msg('chat#id50220328', fuse, ok_cb, false)
 
  return 'Sent !'
 
