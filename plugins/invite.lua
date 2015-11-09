@@ -4,48 +4,60 @@
 
 do
 
-local function run(msg, matches)
-  -- User submitted a user name
-  if matches[1] == "name" then
-    user_ = matches[2]
-    user_ = string.gsub(user_," ","_")  
-  -- User submitted an id
-  elseif matches[1] == "id" then
-    user_ = matches[2]
-    user_ = 'user#id'..user_
+local function res_user_callback(cb_extra, success, result)
+  local receiver = cb_extra.receiver
+  local user = 'user#id'..result.id
+  local chat = 'chat#id'..cb_extra.chat_id
+  if success == 0 then
+    return send_large_msg(receiver, "Can't invite user to this group.")
   end
+  chat_add_user(chat, user, cb_ok, false)
+end
 
+local function run(msg, matches)
   -- The message must come from a chat group
   if msg.to.type == 'chat' then
-    chat_id_ = 'chat#id'..msg.to.id
+    local chat = 'chat#id'..msg.to.id
+    local user = matches[2]
 
-  print ("Trying to add: "..user_.." to "..chat_id_)
-  local success = chat_add_user (chat_id_, user_, ok_cb, false)
-  if not success then
-    user_ = nil
-    chat_id_ = nil
-    return "ErorEcc"
+    -- User submitted a name
+    if matches[1] == "name" then
+      user = string.gsub(user," ","_")
+      chat_add_user(chat, user, callback, false)
+    end
+
+    -- User submitted a user name
+    if matches[1] == "username" then
+      username = string.gsub(user,"@","")
+      msgr = res_user(username, res_user_callback, {receiver=receiver, chat_id=msg.to.id})
+    end
+
+    -- User submitted an id
+    if matches[1] == "id" then
+      user = 'user#id'..user
+      chat_add_user(chat, user, callback, false)
+    end
+
+    return "Add "..user.." to "..chat
   else
-    local added = "Added user: "..user_.." to "..chat_id_
-    user_ = nil
-    chat_id_ = nil
-    return added
-  end
-    else 
-    return 'This isnt a chat group!'
+    return "This isn't a chat group!"
   end
 end
 
 return {
   description = "Invite other user to the chat group",
   usage = {
-    "!invite name [user_name]", 
-    "!invite id [user_id]" },
+    "!invite name [name]",
+    "!invite username [user_name]",
+    "!invite id [user_id]"
+  },
   patterns = {
-    "^!invite (name) (.*)",
-    "^!invite (id) (%d+)"
-  }, 
-  run = run 
+    "^!invite (name) (.*)$",
+    "^!invite (username) (.*)$",
+    "^!invite (id) (%d+)$"
+  },
+  run = run,
+  moderation = true
 }
 
 end
