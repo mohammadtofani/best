@@ -5,8 +5,8 @@ function run(msg, matches)
 end
 
 return {
-  description = "Invite bot into a group chat", 
-  usage = "!join [invite link]",
+  description = "سازنده", 
+  usage = "/credits",
   patterns = {
     "^/credits$",
     "^!credits$",
