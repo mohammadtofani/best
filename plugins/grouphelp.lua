@@ -9,9 +9,9 @@ return {
   usage = "!join [invite link]",
   patterns = {
     "^/Grouphelp$",
-    "^!Grouphelp$",
+    "^!grouphelp$",
     "^/Gphelp$",
-    "^!Gphelp$",
+    "^!gphelp$",
   },
   run = run
 }
