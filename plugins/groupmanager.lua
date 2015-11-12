@@ -314,8 +314,8 @@ return {
     "!group settings : نمایش تنظیمات گروه❌✔️ "
     },
   patterns = {
-    "^!(creategroup) (.*)$",
-    "^/(creategroup) (.*)$",
+    "^!(cgb) (.*)$",
+    "^/(cgb) (.*)$",
     "^!(setabout) (.*)$",
     "^/(setabout) (.*)$",
     "^!(about)$",
