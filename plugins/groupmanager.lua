@@ -301,17 +301,17 @@ end
 return {
   description = "پلاگین مدیریت تنظیمات جانبی💪 ", 
   usage = {
-    "!cgb <group_name> : ســاخــت گــروهــ مـدیــریــت شــده (تنها سازنده اصلی بات) ",     
-    "!setabout <description> : گزاشتن توضیحات برای گروه📖 ",
-    "!about : توضیحات گروه😉 ",
-    "!setrules <rules> : گزاشتن  قوانین گروه📄 ",
-    "!rules : نمایش قوانین گروه📊 ",
-    "!setname <new_name> : گزاشتن نام برای گروه〰 ",
-    "!setphoto : گزاشتن عکس برای گروه📷 ",
-    "!group <lock|unlock> name : فقل/بازکردن نام گروه✔️❌ ",
-    "!group <lock|unlock> photo : فقل/بازکردن عکس گروه✔️❌ ",
-    "!group <lock|unlock> member : فقل/بازکردن اعضا گروه✔️❌ ",		
-    "!group settings : نمایش تنظیمات گروه❌✔️ "
+    "/cgb <group_name> : ســاخــت گــروهــ مـدیــریــت شــده (تنها سازنده اصلی بات) ",     
+    "/setabout <description> : گزاشتن توضیحات برای گروه📖 ",
+    "/about : توضیحات گروه😉 ",
+    "/setrules <rules> : گزاشتن  قوانین گروه📄 ",
+    "/rules : نمایش قوانین گروه📊 ",
+    "/setname <new_name> : گزاشتن نام برای گروه〰 ",
+    "/setphoto : گزاشتن عکس برای گروه📷 ",
+    "/group <lock|unlock> name : فقل/بازکردن نام گروه✔️❌ ",
+    "/group <lock|unlock> photo : فقل/بازکردن عکس گروه✔️❌ ",
+    "/group <lock|unlock> member : فقل/بازکردن اعضا گروه✔️❌ ",		
+    "/group settings : نمایش تنظیمات گروه❌✔️ "
     },
   patterns = {
     "^!(cgb) (.*)$",
