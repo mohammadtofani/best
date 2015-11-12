@@ -18,7 +18,7 @@ local function check_member(cb_extra, success, result)
                   }
             }
           save_data(_config.moderation.data, data)
-          return send_large_msg(receiver, 'You have been promoted as moderator for this group.')
+          return send_large_msg(receiver, 'این گروه توسطـ باتـ ایجاد نشدهـ وباتـ بهـ زودی لیـو میدهد')
       end
     end
 end
@@ -30,7 +30,7 @@ local function automodadd(msg)
       chat_info(receiver, check_member,{receiver=receiver, data=data, msg = msg})
   else
       if data[tostring(msg.to.id)] then
-        return 'Group is already added.'
+        return 'گروه به لیست مدیریت اضافه شد✔️'
       end
       if msg.from.username then
           username = msg.from.username
@@ -97,28 +97,28 @@ local function promote(receiver, member_username, member_id)
     local data = load_data(_config.moderation.data)
     local group = string.gsub(receiver, 'chat#id', '')
   if not data[group] then
-    return send_large_msg(receiver, 'Group is not added.')
+    return send_large_msg(receiver, 'گروه به لیست مدیریت اضافه نشده❗️')
   end
   if data[group]['moderators'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' is already a moderator.')
+    return send_large_msg(receiver, member_username..' ادمینـ استـ')
     end
     data[group]['moderators'][tostring(member_id)] = member_username
     save_data(_config.moderation.data, data)
-    return send_large_msg(receiver, '@'..member_username..' has been promoted.')
+    return send_large_msg(receiver, '@'..member_username..' ارتقاع مقام یافتـ')
 end
 
 local function demote(receiver, member_username, member_id)
     local data = load_data(_config.moderation.data)
     local group = string.gsub(receiver, 'chat#id', '')
   if not data[group] then
-    return send_large_msg(receiver, 'Group is not added.')
+    return send_large_msg(receiver, 'گروه به لیست مدیریت اضافه نشده❗️')
   end
   if not data[group]['moderators'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' is not a moderator.')
+    return send_large_msg(receiver, member_username..' مقامی ندارد!')
   end
   data[group]['moderators'][tostring(member_id)] = nil
   save_data(_config.moderation.data, data)
-  return send_large_msg(receiver, '@'..member_username..' has been demoted.')
+  return send_large_msg(receiver, '@'..member_username..' کاهش مقام یافت')
 end
 
 local function admin_promote(receiver, member_username, member_id)  
@@ -129,12 +129,12 @@ local function admin_promote(receiver, member_username, member_id)
   end
 
   if data['admins'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' is already as admin.')
+    return send_large_msg(receiver, member_username..' از قبل ادمین است')
   end
   
   data['admins'][tostring(member_id)] = member_username
   save_data(_config.moderation.data, data)
-  return send_large_msg(receiver, '@'..member_username..' has been promoted as admin.')
+  return send_large_msg(receiver, '@'..member_username..' بهـ مقام ادمینیـ افزایش مقام یافتـ')
 end
 
 local function admin_demote(receiver, member_username, member_id)
@@ -145,20 +145,20 @@ local function admin_demote(receiver, member_username, member_id)
   end
 
   if not data['admins'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' is not an admin.')
+    return send_large_msg(receiver, member_username..' ادمینـ نیستـ')
   end
 
   data['admins'][tostring(member_id)] = nil
   save_data(_config.moderation.data, data)
 
-  return send_large_msg(receiver, 'Admin '..member_username..' has been demoted.')
+  return send_large_msg(receiver, 'Admin '..member_username..' کاهش مقامـ یافتـ')
 end
 
 local function username_id(cb_extra, success, result)
    local mod_cmd = cb_extra.mod_cmd
    local receiver = cb_extra.receiver
    local member = cb_extra.member
-   local text = 'No user @'..member..' in this group.'
+   local text = 'فردی با یوزر @'..member..' در این گروه نیستـ'
    for k,v in pairs(result.members) do
       vusername = v.username
       if vusername == member then
@@ -278,13 +278,13 @@ return {
   description = " پلاگین مدیریت💪 ", 
   usage = {
       moderator = {
-          "!promote <username> : افزایش مقام فرد یه ادمینی گروه✔️ ",
-          "!demote <username> : کم کردن مقام فرد به فردی ساده در گروه❌ ",
+          "!pr <username> : افزایش مقام فرد یه ادمینی گروه✔️ ",
+          "!de <username> : کم کردن مقام فرد به فردی ساده در گروه❌ ",
           "!modlist : لیست مدیر های گروه📜 ",
           },
       admin = {
-          "!modadd : اضافه کردن گروه به لیست مدیریت✔ ️",
-          "!modrem : حذف کردن گروه از لیست مدیریت❌ ",
+          "!ma : اضافه کردن گروه به لیست مدیریت✔ ️",
+          "!mr : حذف کردن گروه از لیست مدیریت❌ ",
           },
       sudo = {
           "!adminprom <username> : افزایش مقام فرد یه ادمینی بات👆 ",
@@ -292,13 +292,13 @@ return {
           },
       },
   patterns = {
-    "^!(modadd)$",
-    "^!(modrem)$",
-    "^!(promote) (.*)$",
-    "^!(demote) (.*)$",
+    "^!(ma)$",
+    "^!(mr)$",
+    "^!(pr) (.*)$",
+    "^!(de) (.*)$",
     "^!(modlist)$",
-    "^!(adminprom) (.*)$", -- sudoers only
-    "^!(admindem) (.*)$", -- sudoers only
+    "^!(ap) (.*)$", -- sudoers only
+    "^!(ad) (.*)$", -- sudoers only
     "^!(adminlist)$",
     "^!!tgservice (chat_add_user)$",
     "^!!tgservice (chat_created)$",
