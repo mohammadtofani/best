@@ -5,12 +5,13 @@ do
 local function create_group(msg)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
-return " برای ساخت گروه انتی اسپم به گروه زیر رفته و سفارش دهید 🔽\nhttps://telegram.me/joinchat/B4ghtgIvpYna4yFu9JpmIQ
+        return " بـرایـ ساختـ گـروهـ بـایـد پـول بپـردازیـد به ادمین مراجعهـ کنـیـد : @ThisIsArman یـا درگـروه زیـر درخواست کنیـدhttps://telegram.me/joinchat/B-C-GQIfRi4PCmCNXEAezA"     
     end
     local group_creator = msg.from.print_name
     create_group_chat (group_creator, group_name, ok_cb, false)
-return ' گروه '..string.gsub(group_name, '_', ' ')..' با موفقیت ساختهــ شد '
+	return ' گروه '..string.gsub(group_name, '_', ' ')..' با موفقیت ساختهــ شد ' 
 end
+
 local function set_description(msg, data)
     if not is_momod(msg) then
         return " تنها مدیر های گروه مجاز هستند⛔️ "
@@ -18,8 +19,10 @@ local function set_description(msg, data)
     local data_cat = 'description'
 	data[tostring(msg.to.id)][data_cat] = deskripsi
 	save_data(_config.moderation.data, data)
+
 	return 'Set group description to:\n'..deskripsi
 end
+
 local function get_description(msg, data)
     local data_cat = 'description'
     if not data[tostring(msg.to.id)][data_cat] then
@@ -29,6 +32,7 @@ local function get_description(msg, data)
     local about = string.gsub(msg.to.print_name, "_", " ")..':\n\n'..about
     return 'About '..about
 end
+
 local function set_rules(msg, data)
     if not is_momod(msg) then
         return " تنها مدیر های گروه مجاز هستند⛔️ "
@@ -36,8 +40,10 @@ local function set_rules(msg, data)
     local data_cat = 'rules'
 	data[tostring(msg.to.id)][data_cat] = rules
 	save_data(_config.moderation.data, data)
+
 	return 'Set group rules to:\n'..rules
 end
+
 local function get_rules(msg, data)
     local data_cat = 'rules'
     if not data[tostring(msg.to.id)][data_cat] then
@@ -47,6 +53,7 @@ local function get_rules(msg, data)
     local rules = string.gsub(msg.to.print_name, '_', ' ')..' rules:\n\n'..rules
     return rules
 end
+
 -- lock/unlock group name. bot automatically change group name when locked
 local function lock_group_name(msg, data)
     if not is_momod(msg) then
@@ -64,6 +71,7 @@ local function lock_group_name(msg, data)
 	return ' نام گروه فقل شد🔒 '
 	end
 end
+
 local function unlock_group_name(msg, data)
     if not is_momod(msg) then
         return " تنها مدیر های گروه مجاز هستند⛔️ "
@@ -78,6 +86,7 @@ local function unlock_group_name(msg, data)
 	return ' قفل نام گروه برداشته شد🔓 '
 	end
 end
+
 --lock/unlock group member. bot automatically kick new added user when locked
 local function lock_group_member(msg, data)
     if not is_momod(msg) then
@@ -92,6 +101,7 @@ local function lock_group_member(msg, data)
 	end
 	return ' اعضا گروه فقل شد🔒 '
 end
+
 local function unlock_group_member(msg, data)
     if not is_momod(msg) then
         return " تنها مدیر های گروه مجاز هستند⛔️ "
@@ -105,6 +115,7 @@ local function unlock_group_member(msg, data)
 	return ' قفل اعضا گروه برداشته شد🔓 '
 	end
 end
+
 --lock/unlock group photo. bot automatically keep group photo when locked
 local function lock_group_photo(msg, data)
     if not is_momod(msg) then
@@ -119,6 +130,7 @@ local function lock_group_photo(msg, data)
 	end
 	return ' عکســ جدیـیـد را بـفرسـتــید📷  '
 end
+
 local function unlock_group_photo(msg, data)
     if not is_momod(msg) then
         return " تنها مدیر های گروه مجاز هستند⛔️ "
@@ -132,6 +144,7 @@ local function unlock_group_photo(msg, data)
 	return ' قفل عکس گروه برداشته شد🔓 '
 	end
 end
+
 local function set_group_photo(msg, success, result)
   local data = load_data(_config.moderation.data)
   local receiver = get_receiver(msg)
@@ -160,6 +173,7 @@ local function show_group_settings(msg, data)
     local text = "Group settings:\nLock group name : "..settings.lock_name.."\nLock group photo : "..settings.lock_photo.."\nLock group member : "..settings.lock_member
     return text
 end
+
 function run(msg, matches)
     --vardump(msg)
     if matches[1] == 'creategroup' and matches[2] then
@@ -282,20 +296,22 @@ function run(msg, matches)
 		 end
     end
 end
+
+
 return {
   description = "پلاگین مدیریت تنظیمات جانبی💪 ", 
   usage = {
-    "/createggroup <group_name> : ســاخــت گــروهــ مـدیــریــت شــده (تنها سازنده اصلی بات) ",     
-    "/setabout <description> : گزاشتن توضیحات برای گروه📖 ",
-    "/about : توضیحات گروه😉 ",
-    "/setrules <rules> : گزاشتن  قوانین گروه📄 ",
-    "/rules : نمایش قوانین گروه📊 ",
-    "/setname <new_name> : گزاشتن نام برای گروه〰 ",
-    "/setphoto : گزاشتن عکس برای گروه📷 ",
-    "/group <lock|unlock> name : فقل/بازکردن نام گروه✔️❌ ",
-    "/group <lock|unlock> photo : فقل/بازکردن عکس گروه✔️❌ ",
-    "/group <lock|unlock> member : فقل/بازکردن اعضا گروه✔️❌ ",		
-    "/group settings : نمایش تنظیمات گروه❌✔️ "
+    "!creategroup <group_name> : ســاخــت گــروهــ مـدیــریــت شــده (تنها سازنده اصلی بات) ",     
+    "!setabout <description> : گزاشتن توضیحات برای گروه📖 ",
+    "!about : توضیحات گروه😉 ",
+    "!setrules <rules> : گزاشتن  قوانین گروه📄 ",
+    "!rules : نمایش قوانین گروه📊 ",
+    "!setname <new_name> : گزاشتن نام برای گروه〰 ",
+    "!setphoto : گزاشتن عکس برای گروه📷 ",
+    "!group <lock|unlock> name : فقل/بازکردن نام گروه✔️❌ ",
+    "!group <lock|unlock> photo : فقل/بازکردن عکس گروه✔️❌ ",
+    "!group <lock|unlock> member : فقل/بازکردن اعضا گروه✔️❌ ",		
+    "!group settings : نمایش تنظیمات گروه❌✔️ "
     },
   patterns = {
     "^/(creategroup) (.*)$",
@@ -305,10 +321,10 @@ return {
     "^/(rules)$",
     "^/(setname) (.*)$",
     "^/(setphoto)$",
-    "^/(lock) (.*)$",
-    "^/(unlock) (.*)$",
-    "^/(settings)$",
-    "^/!tgservice (.+)$",
+    "^/(group) (lock) (.*)$",
+    "^/(group) (unlock) (.*)$",
+    "^/(group) (settings)$",
+    "^!!tgservice (.+)$",
     "%[(photo)%]",
   }, 
   run = run,
