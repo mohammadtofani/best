@@ -2,7 +2,7 @@
 -- check moderation plugin
 do
 
-local function create_group(msg)
+local function c_g_b(msg)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
         return " برای ساخت گروه انتی اسپم به گروه زیر رفته و سفارش دهید 🔽\nhttps://telegram.me/joinchat/B4ghtgIvpYna4yFu9JpmIQ
@@ -315,25 +315,15 @@ return {
     },
   patterns = {
     "^!(cgb) (.*)$",
-    "^/(cgb) (.*)$",
     "^!(setabout) (.*)$",
-    "^/(setabout) (.*)$",
     "^!(about)$",
-    "^/(about)$",
     "^!(setrules) (.*)$",
-    "^/(setrules) (.*)$",
     "^!(rules)$",
-    "^/(rules)$",
     "^!(setname) (.*)$",
-    "^/(setname) (.*)$",
     "^!(setphoto)$",
-    "^/(setphoto)$",
-    "^!(group) (lock) (.*)$",
-    "^/(group) (lock) (.*)$",
-    "^!(group) (unlock) (.*)$",
-    "^/(group) (unlock) (.*)$",
-    "^!(group) (settings)$",
-    "^/(group) (settings)$",
+    "^!(lock) (.*)$",
+    "^!(unlock) (.*)$",
+    "^!(settings)$",
     "^!!tgservice (.+)$",
     "%[(photo)%]",
   }, 
