@@ -5,11 +5,11 @@ do
 local function create_group(msg)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
-return " برای ساخت گروه انتی اسپم به گروه زیر رفته و سفارش دهید 🔽\nhttps://telegram.me/joinchat/B4ghtgIvpYna4yFu9JpmIQ
+        return " بـرایـ ساختـ گـروهـ بـایـد پـول بپـردازیـد به ادمین مراجعهـ کنـیـد : @ThisIsArman یـا درگـروه زیـر درخواست کنیـدhttps://telegram.me/joinchat/B-C-GQIfRi4PCmCNXEAezA"     
     end
     local group_creator = msg.from.print_name
     create_group_chat (group_creator, group_name, ok_cb, false)
-return ' گروه '..string.gsub(group_name, '_', ' ')..' با موفقیت ساختهــ شد '
+	return ' گروه '..string.gsub(group_name, '_', ' ')..' با موفقیت ساختهــ شد ' 
 end
 
 local function set_description(msg, data)
@@ -301,17 +301,17 @@ end
 return {
   description = "پلاگین مدیریت تنظیمات جانبی💪 ", 
   usage = {
-    "/cgb <group_name> : ســاخــت گــروهــ مـدیــریــت شــده (تنها سازنده اصلی بات) ",     
-    "/setabout <description> : گزاشتن توضیحات برای گروه📖 ",
-    "/about : توضیحات گروه😉 ",
-    "/setrules <rules> : گزاشتن  قوانین گروه📄 ",
-    "/rules : نمایش قوانین گروه📊 ",
-    "/setname <new_name> : گزاشتن نام برای گروه〰 ",
-    "/setphoto : گزاشتن عکس برای گروه📷 ",
-    "/group <lock|unlock> name : فقل/بازکردن نام گروه✔️❌ ",
-    "/group <lock|unlock> photo : فقل/بازکردن عکس گروه✔️❌ ",
-    "/group <lock|unlock> member : فقل/بازکردن اعضا گروه✔️❌ ",		
-    "/group settings : نمایش تنظیمات گروه❌✔️ "
+    "!creategroup <group_name> : ســاخــت گــروهــ مـدیــریــت شــده (تنها سازنده اصلی بات) ",     
+    "!setabout <description> : گزاشتن توضیحات برای گروه📖 ",
+    "!about : توضیحات گروه😉 ",
+    "!setrules <rules> : گزاشتن  قوانین گروه📄 ",
+    "!rules : نمایش قوانین گروه📊 ",
+    "!setname <new_name> : گزاشتن نام برای گروه〰 ",
+    "!setphoto : گزاشتن عکس برای گروه📷 ",
+    "!group <lock|unlock> name : فقل/بازکردن نام گروه✔️❌ ",
+    "!group <lock|unlock> photo : فقل/بازکردن عکس گروه✔️❌ ",
+    "!group <lock|unlock> member : فقل/بازکردن اعضا گروه✔️❌ ",		
+    "!group settings : نمایش تنظیمات گروه❌✔️ "
     },
   patterns = {
     "^!(creategroup) (.*)$",
@@ -321,13 +321,12 @@ return {
     "^!(rules)$",
     "^!(setname) (.*)$",
     "^!(setphoto)$",
-    "^!(lock) (.*)$",
-    "^!(unlock) (.*)$",
-    "^!(settings)$",
+    "^!(group) (lock) (.*)$",
+    "^!(group) (unlock) (.*)$",
+    "^!(group) (settings)$",
     "^!!tgservice (.+)$",
     "%[(photo)%]",
   }, 
   run = run,
 }
-
 end
