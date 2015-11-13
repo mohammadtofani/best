@@ -287,8 +287,8 @@ return {
           "/modrem : حذف کردن گروه از لیست مدیریت❌ ",
           },
       sudo = {
-          "/ap <username> : افزایش مقام فرد یه ادمینی بات👆 ",
-          "/ad <username> : کم کردن مقام فرد از ادمینی بات به فرد ساده👇 ",
+          "/adminprom <username> : افزایش مقام فرد یه ادمینی بات👆 ",
+          "/admindem <username> : کم کردن مقام فرد از ادمینی بات به فرد ساده👇 ",
           },
       },
   patterns = {
@@ -297,13 +297,12 @@ return {
     "^/(promote) (.*)$",
     "^/(demote) (.*)$",
     "^/(modlist)$",
-    "^/(ap) (.*)$", -- sudoers only
-    "^/(ad) (.*)$", -- sudoers only
+    "^/(adminprom) (.*)$", -- sudoers only
+    "^/(admindem) (.*)$", -- sudoers only
     "^/(adminlist)$",
     "^!!tgservice (chat_add_user)$",
     "^!!tgservice (chat_created)$",
   }, 
   run = run,
 }
-
 end
