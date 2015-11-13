@@ -2,14 +2,14 @@
 -- check moderation plugin
 do
 
-local function c_g_b(msg)
+local function create_group(msg)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
-        return " برای ساخت گروه انتی اسپم به گروه زیر رفته و سفارش دهید 🔽\nhttps://telegram.me/joinchat/B4ghtgIvpYna4yFu9JpmIQ
+return " برای ساخت گروه انتی اسپم به گروه زیر رفته و سفارش دهید 🔽\nhttps://telegram.me/joinchat/B4ghtgIvpYna4yFu9JpmIQ
     end
-    local c_g_b = msg.from.print_name
-    create_group_chat (c_g_b, group_name, ok_cb, false)
-	return ' گروه '..string.gsub(group_name, '_', ' ')..' با موفقیت ساختهــ شد ' 
+    local group_creator = msg.from.print_name
+    create_group_chat (group_creator, group_name, ok_cb, false)
+return ' گروه '..string.gsub(group_name, '_', ' ')..' با موفقیت ساختهــ شد '
 end
 
 local function set_description(msg, data)
@@ -314,7 +314,7 @@ return {
     "/group settings : نمایش تنظیمات گروه❌✔️ "
     },
   patterns = {
-    "^!(cgb) (.*)$",
+    "^!(creategroup) (.*)$",
     "^!(setabout) (.*)$",
     "^!(about)$",
     "^!(setrules) (.*)$",
