@@ -1,27 +1,23 @@
-uzzbot (telegram-bot)
+UltraKing (telegram-bot)
 ============
 
-[![Donate button](https://img.shields.io/badge/nepal-donate-yellow.svg)](http://www.nrcs.org/donate-nrcs "Donate to Nepal Red Cross Society")
-
-A Telegram Bot based on plugins using [tg](https://github.com/vysheng/tg). Forked from [Yagop's](https://github.com/yagop/telegram-bot).
-
-[Installation](https://github.com/yagop/telegram-bot/wiki/Installation)
+A Telegram Bot based on plugins using [tg](https://github.com/vysheng/tg). Forked from [Ultrabot](https://github.com/ArmanKiIng/UltraJonzi).
 ------------
 ```bash
-# Tested on Ubuntu 14.04, for other OSs check out https://github.com/yagop/telegram-bot/wiki/Installation
+# Tested on Ubuntu 14.04
 sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev libevent-dev make unzip git redis-server g++ libjansson-dev libpython-dev expat libexpat1-dev
 ```
 
 ```bash
 # After those dependencies, lets install the bot
 cd $HOME
-git clone https://github.com/uziins/uzzbot.git
-cd uzzbot
+git clone https://github.com/ArmanKiIng/UltraJonzi.git
+cd UltraJonzi
 ./launch.sh install
 ./launch.sh # Will ask you for a phone number & confirmation code.
 ```
 
-Enable more [`plugins`](https://github.com/uziins/uzzbot/tree/master/plugins)
+Enable more [`plugins`](https://github.com/ArmanKiIng/UltraJonzi/tree/master/plugins)
 -------------
 See the plugins list with `!plugins` command.
 
@@ -36,17 +32,20 @@ Run it as a daemon
 ------------
 If your Linux/Unix comes with [upstart](http://upstart.ubuntu.com/) you can run the bot by this way
 ```bash
-$ sed -i "s/yourusername/$(whoami)/g" etc/uzzbot.conf
-$ sed -i "s_telegrambotpath_$(pwd)_g" etc/uzzbot.conf
-$ sudo cp etc/uzzbot.conf /etc/init/
-$ sudo start uzzbot # To start it
-$ sudo stop uzzbot # To stop it
+$ sed -i "s/yourusername/$(whoami)/g" etc/UltraJonzi.conf
+$ sed -i "s_telegrambotpath_$(pwd)_g" etc/UltraJonzi.conf
+$ sudo cp etc/UltraJonzi.conf /etc/init/
+$ sudo start UltraJonzi # To start it
+$ sudo stop UltraJonzi # To stop it
 ```
 
 
 ------------
-Bot: [uzzbot](https://telegram.me/uzzbot)
+Bot: [ultraking](https://telegram.me/Ultraking)
 
-[Join](https://telegram.me/joinchat/ALJ3iwFAhOCh4WNUHAyzXQ) on the TelegramBot Discussion Group.
+[Join](https://telegram.me/joinchat/B4ghtgIvpYna4yFu9JpmIQ) on the UltraKing Order Group.
 or
-[Join](https://telegram.me/joinchat/045d20af01e2c643263fec0188be277b) for uzzbot support.
+[Join](https://telegram.me/joinchat/B4ghtgHOsHVQGDQZcoqWiw) for UltraKing support.
+And
+[Join](https://telegram.me/joinchat/BhviQzur-GTHEOlVngENbw) is UltraKing Channel.
+Creator IS https://telegram.me/ThisIsArman
