@@ -85,7 +85,7 @@ return {
       "^/id$",
       "^/ids? (chat) (%d+)$",
       "^/ids? (chat)$",
-      "^/id (.*)$"
+      "^/myid (.*)$"
    },
    run = run
 }
