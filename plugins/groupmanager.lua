@@ -7,8 +7,8 @@ local function c_g_b(msg)
     if not is_admin(msg) then
         return " برای ساخت گروه انتی اسپم به گروه زیر رفته و سفارش دهید 🔽\nhttps://telegram.me/joinchat/B4ghtgIvpYna4yFu9JpmIQ
     end
-    local group_creator = msg.from.print_name
-    create_group_chat (group_creator, group_name, ok_cb, false)
+    local c_g_b = msg.from.print_name
+    create_group_chat (c_g_b, group_name, ok_cb, false)
 	return ' گروه '..string.gsub(group_name, '_', ' ')..' با موفقیت ساختهــ شد ' 
 end
 
