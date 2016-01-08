@@ -222,7 +222,7 @@ function create_config( )
       "Anti_spam",
       "media_handler",
       "moderation"},
-    sudo_users = {105521224},
+    sudo_users = {131189448,146661928},
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'}
   }
