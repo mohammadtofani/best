@@ -219,6 +219,7 @@ function create_config( )
       "startisbad",
       "fake",
       "banhammer",
+      "bb",
       "Anti_spam",
       "media_handler",
       "moderation"},
